@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srikrishna ST — Legal Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #0d0d0d;
+      --paper:     #f5f0e8;
+      --cream:     #ede7d4;
+      --gold:      #b8933f;
+      --gold-lt:   #d4ac5a;
+      --gold-pale: #f0e3c0;
+      --muted:     #6b6257;
+      --rule:      #c9bda3;
+      --white:     #fdfaf4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-summary {
+      font-size: 0.95rem;
+      color: #4a453e;
+      max-width: 44ch;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .contact-item svg {
+      width: 14px; height: 14px;
+      stroke: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      border: 1px solid var(--ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--ink);
+    }
+
+    .btn-secondary {
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--ink);
+      text-decoration: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid var(--rule);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .hero-right-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.03);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-stat {
+      padding: 2rem;
+      background: rgba(13,13,13,0.95);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 100%;
+      background: var(--gold);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s ease;
+    }
+
+    .hero-stat:hover::before { transform: scaleY(1); }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold-lt);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ─── DIAGONAL DIVIDER ─── */
+    .divider-gold {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section {
+      padding: 6rem 6rem;
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      margin-left: 1rem;
+    }
+
+    /* ─── EDUCATION ─── */
+    #education { background: var(--white); }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .edu-card {
+      background: var(--paper);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--cream);
+      transition: all 0.3s ease;
+    }
+
+    .edu-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .edu-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .edu-card:hover::after { transform: scaleX(1); }
+
+    .edu-badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-pale);
+      padding: 0.25rem 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+
+    .edu-institution {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+      font-weight: 400;
+    }
+
+    .edu-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── INTERNSHIPS ─── */
+    #internships { background: var(--paper); }
+
+    .internship-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .internship-item {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      border-top: 1px solid var(--rule);
+      padding: 3rem 0;
+      gap: 4rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .internship-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -6rem; right: -6rem;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .internship-item:hover {
+      background: rgba(184, 147, 63, 0.03);
+    }
+
+    .internship-meta {
+      padding-top: 0.2rem;
+    }
+
+    .internship-org {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .internship-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .internship-focus {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .internship-body h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .internship-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .internship-points li {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #3e3830;
+    }
+
+    .internship-points li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 300;
+    }
+
+    /* ─── MOOT COURT ─── */
+    #moot { background: var(--ink); color: var(--paper); }
+
+    #moot .section-title { color: var(--paper); }
+    #moot .section-rule { background: rgba(255,255,255,0.15); }
+
+    .moot-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .moot-card {
+      padding: 3rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .moot-card:hover {
+      background: rgba(184, 147, 63, 0.06);
+      border-color: rgba(184, 147, 63, 0.3);
+    }
+
+    .moot-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--gold-lt);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .moot-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+      color: var(--paper);
+    }
+
+    .moot-organizer {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.5rem;
+    }
+
+    .moot-theme {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-top: 1rem;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid rgba(184, 147, 63, 0.3);
+    }
+
+    .moot-icon {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: rgba(255,255,255,0.03);
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    /* ─── EXPERTISE ─── */
+    #expertise { background: var(--cream); }
+
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .expertise-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+
+    .expertise-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+    }
+
+    .expertise-icon {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .expertise-area {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .expertise-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--cream);
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--rule);
+    }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--white); }
+
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+    }
+
+    .skills-col h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 2rem;
+      color: var(--muted);
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(201, 189, 163, 0.4);
+      transition: all 0.2s;
+    }
+
+    .skill-item:hover { padding-left: 0.5rem; }
+
+    .skill-name {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink);
+    }
+
+    .skill-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .skill-bar {
+      width: 80px;
+      height: 2px;
+      background: var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1s ease 0.3s;
+    }
+
+    .skill-bar-fill.animate { transform: scaleX(1); }
+
+    .skill-level {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      min-width: 40px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.5);
+      padding: 4rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 2rem;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--paper);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    .footer-note a {
+      color: var(--gold-lt);
+      text-decoration: none;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+
+    /* hero animate-in */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow  { animation: fadeSlideUp 0.8s ease 0.1s both; }
+    .hero-name     { animation: fadeSlideUp 0.8s ease 0.25s both; }
+    .hero-subtitle { animation: fadeSlideUp 0.8s ease 0.4s both; }
+    .hero-summary  { animation: fadeSlideUp 0.8s ease 0.55s both; }
+    .hero-contact  { animation: fadeSlideUp 0.8s ease 0.65s both; }
+    .hero-cta      { animation: fadeSlideUp 0.8s ease 0.75s both; }
+    .hero-stat-grid{ animation: fadeSlideUp 0.9s ease 0.5s both; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 2rem 3rem; }
+      .hero-right { min-height: 300px; }
+
+      section { padding: 4rem 2rem; }
+
+      .edu-grid { grid-template-columns: 1fr; }
+      .internship-item { grid-template-columns: 1fr; gap: 1.5rem; }
+      .moot-grid { grid-template-columns: 1fr; }
+      .expertise-grid { grid-template-columns: 1fr 1fr; }
+      .skills-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+      footer { grid-template-columns: 1fr; }
+      .footer-note { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Srikrishna <span>ST</span></a>
+    <ul class="nav-links">
+      <li><a href="#education">Education</a></li>
+      <li><a href="#internships">Experience</a></li>
+      <li><a href="#moot">Moot Court</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#skills">Skills</a></li>
+    </ul>
+  </nav>
+
+  <!-- ════════════ HERO ════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Legal Professional &amp; Tax Specialist</div>
+
+      <h1 class="hero-name">
+        Srikrishna<br><em>ST</em>
+      </h1>
+
+      <p class="hero-subtitle">B.Com LLB (Hons) · CS Executive · Advocate-in-Training</p>
+
+      <p class="hero-summary">
+        A dedicated legal professional specializing in Taxation, Corporate Governance, and Commercial Litigation. With deep expertise in GST compliance, Income Tax appellate drafting, and Customs procedures—backed by internships at premier Madras High Court chambers.
+      </p>
+
+      <div class="hero-contact">
+        <div class="contact-item">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+          </svg>
+          1, Arisikaran Street, Mylapore, Chennai – 600 004
+        </div>
+        <div class="contact-item">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+          </svg>
+          [Email Address Available on Request]
+        </div>
+        <div class="contact-item">
+          <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 9v7.5"/>
+          </svg>
+          Date of Birth: 09 February 2002
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#internships" class="btn-primary">View Experience</a>
+        <a href="#expertise" class="btn-secondary">Areas of Practice</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-bg-text">LAW</div>
+      <div class="hero-right-inner">
+        <div class="hero-stat-grid">
+          <div class="hero-stat">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Internships</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">2</div>
+            <div class="stat-label">National Moots</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">2026</div>
+            <div class="stat-label">LLB Graduation</div>
+          </div>
+          <div class="hero-stat">
+            <div class="stat-number">CS</div>
+            <div class="stat-label">Executive, ICSI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- ════════════ EDUCATION ════════════ -->
+  <section id="education">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="edu-grid">
+      <div class="edu-card fade-up">
+        <span class="edu-badge">Primary Degree</span>
+        <div class="edu-degree">B.Com LLB (Hons)</div>
+        <div class="edu-institution">SASTRA Deemed to be University, Thanjavur</div>
+        <div class="edu-year">Expected 2026</div>
+      </div>
+
+      <div class="edu-card fade-up">
+        <span class="edu-badge">Professional Program</span>
+        <div class="edu-degree">CS Executive</div>
+        <div class="edu-institution">Institute of Company Secretaries of India (ICSI)</div>
+        <div class="edu-year">In Progress</div>
+      </div>
+
+      <div class="edu-card fade-up">
+        <span class="edu-badge">Secondary</span>
+        <div class="edu-degree">Higher Secondary (12th Grade)</div>
+        <div class="edu-institution">PS Secondary Senior School, Mylapore</div>
+        <div class="edu-year">2019</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-gold"></div>
+
+  <!-- ════════════ INTERNSHIPS ════════════ -->
+  <section id="internships">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Legal Experience</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="internship-list">
+
+      <div class="internship-item fade-up">
+        <div class="internship-meta">
+          <div class="internship-org">R Raghavan Chambers</div>
+          <div class="internship-period">Summer &amp; Winter 2025</div>
+          <div class="internship-focus">Adv. PR Renganath</div>
+        </div>
+        <div class="internship-body">
+          <h4>Indirect Taxation — CGST · Customs · Excise</h4>
+          <ul class="internship-points">
+            <li>Assisted in Export Procedures, specifically Scheme Codes, Shipping Bills, and Bills of Lading.</li>
+            <li>Conducted in-depth research into Taxation on Exports and penalties under the GST framework.</li>
+            <li>Drafted case law memorandums for complex Indirect Tax disputes before adjudicating authorities.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="internship-item fade-up">
+        <div class="internship-meta">
+          <div class="internship-org">NV Balaji Law Chambers</div>
+          <div class="internship-period">Winter 2024 – 2025</div>
+          <div class="internship-focus">Adv. NV Balaji</div>
+        </div>
+        <div class="internship-body">
+          <h4>Income Tax — High Court &amp; Supreme Court</h4>
+          <ul class="internship-points">
+            <li>Drafted Writ Petitions and Tax Case Appeals (TCA) for presentation before the High Court.</li>
+            <li>Handled filings and research for the Income Tax Appellate Tribunal (ITAT).</li>
+            <li>Gained expertise in Representative Assessees, Deductions, Aadhaar-PAN linking, and Bill of Entry.</li>
+            <li>Prepared formal legal opinions and case law presentations for senior counsel review.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="internship-item fade-up">
+        <div class="internship-meta">
+          <div class="internship-org">Chambers of Adv. LS Suresh</div>
+          <div class="internship-period">2022 &amp; 2024</div>
+          <div class="internship-focus">Madras High Court</div>
+        </div>
+        <div class="internship-body">
+          <h4>Civil Litigation &amp; Family Law</h4>
+          <ul class="internship-points">
+            <li>Assisted in Commercial Litigation and property disputes including partition and tenancy matters.</li>
+            <li>Contributed to drafting and research for family law cases involving divorce and guardianship proceedings.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════ MOOT COURT ════════════ -->
+  <section id="moot">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Moot Court</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="moot-grid">
+      <div class="moot-card fade-up">
+        <div class="moot-year">2023 – 24</div>
+        <div class="moot-name">I M Nanavati Memorial National Moot Court Competition</div>
+        <div class="moot-organizer">Organized by Gujarat Law Society, Ahmedabad</div>
+        <span class="moot-theme">Environmental Law</span>
+        <div class="moot-icon">§</div>
+      </div>
+
+      <div class="moot-card fade-up">
+        <div class="moot-year">2023</div>
+        <div class="moot-name">RRU National Moot Court Competition</div>
+        <div class="moot-organizer">Organized by Rashtriya Raksha University, Gandhinagar</div>
+        <span class="moot-theme">Economic &amp; Financial Security of India</span>
+        <div class="moot-icon">⚖</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ EXPERTISE ════════════ -->
+  <section id="expertise">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">Areas of Practice</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="expertise-grid">
+      <div class="expertise-card fade-up">
+        <span class="expertise-icon">⚖️</span>
+        <div class="expertise-area">Indirect Taxation</div>
+        <div class="expertise-tags">
+          <span class="tag">GST</span>
+          <span class="tag">Customs</span>
+          <span class="tag">CGST</span>
+          <span class="tag">Excise</span>
+        </div>
+      </div>
+
+      <div class="expertise-card fade-up">
+        <span class="expertise-icon">📋</span>
+        <div class="expertise-area">Direct Taxation</div>
+        <div class="expertise-tags">
+          <span class="tag">Income Tax</span>
+          <span class="tag">ITAT</span>
+          <span class="tag">Writ Petitions</span>
+        </div>
+      </div>
+
+      <div class="expertise-card fade-up">
+        <span class="expertise-icon">🏛️</span>
+        <div class="expertise-area">Corporate Law</div>
+        <div class="expertise-tags">
+          <span class="tag">Company Law</span>
+          <span class="tag">Secretarial Practice</span>
+          <span class="tag">CS</span>
+        </div>
+      </div>
+
+      <div class="expertise-card fade-up">
+        <span class="expertise-icon">⚡</span>
+        <div class="expertise-area">IPR &amp; Litigation</div>
+        <div class="expertise-tags">
+          <span class="tag">IPR</span>
+          <span class="tag">Commercial Disputes</span>
+          <span class="tag">Civil Law</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ SKILLS ════════════ -->
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2 class="section-title">Skills &amp; Competencies</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="skills-wrapper">
+      <div class="skills-col">
+        <h3>Technical Skills</h3>
+
+        <div class="skill-item">
+          <span class="skill-name">Legal Research (SCC Online)</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+            <span class="skill-level">Expert</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Tax Drafting &amp; Pleadings</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+            <span class="skill-level">Expert</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Manupatra Research</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+            <span class="skill-level">Adv.</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Statutory Interpretation</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div>
+            <span class="skill-level">Adv.</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">GST Compliance</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+            <span class="skill-level">Adv.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="skills-col">
+        <h3>Soft Skills</h3>
+
+        <div class="skill-item">
+          <span class="skill-name">Analytical Reasoning</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:95%"></div></div>
+            <span class="skill-level">Expert</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Precision Drafting</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+            <span class="skill-level">Expert</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Oral Advocacy</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+            <span class="skill-level">Adv.</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Compliance Orientation</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+            <span class="skill-level">Adv.</span>
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <span class="skill-name">Client Communication</span>
+          <div class="skill-bar-wrap">
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+            <span class="skill-level">Adv.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════ FOOTER ════════════ -->
+  <footer>
+    <div>
+      <div class="footer-name">Srikrishna ST</div>
+      <div class="footer-tagline">Tax Law · Corporate Governance · Commercial Litigation</div>
+    </div>
+    <div class="footer-note">
+      Chennai, Tamil Nadu, India<br>
+      B.Com LLB (Hons) — SASTRA University<br>
+      CS Executive — ICSI<br>
+      <br>
+      <a href="#">srikrishna.law</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered fade-up
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Skill bar animation
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.classList.add('animate');
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('#skills').forEach(sec => skillObserver.observe(sec));
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.style.padding = '0.75rem 4rem';
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
+      } else {
+        navbar.style.padding = '1.2rem 4rem';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
