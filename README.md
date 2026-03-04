@@ -1,2 +1,0 @@
-# Srikrishnan
-AI course practicals
